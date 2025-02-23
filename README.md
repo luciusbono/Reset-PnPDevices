@@ -12,4 +12,4 @@ $Principal = New-ScheduledTaskPrincipal -UserId "SYSTEM" -LogonType ServiceAccou
 Register-ScheduledTask -TaskName "Reset Problem PnP Devices" -Action $Action -Trigger $Trigger -Principal $Principal
 ```
 
-I write logs for this app to %SYSTEMDRIVE%\PnPReset and they don't rotate. Feel free to judge me.
+I write logs to %SYSTEMDRIVE%\PnPReset and they don't rotate. Feel free to judge me.
