@@ -6,12 +6,12 @@ function Write-Log {
     param($Message)
     $logMessage = "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): $Message"
     Write-Host $logMessage
-    Add-Content -Path "$env:USERPROFILE\log\PnPReset\device_reset.log" -Value $logMessage
+    Add-Content -Path "$env:SystemDrive\PnPReset\device_reset.log" -Value $logMessage
 }
 
 # Ensure log directory exists
-if (-not (Test-Path "$env:USERPROFILE\log\PnPResett")) {
-    New-Item -ItemType Directory -Path "$env:USERPROFILE\log\PnPReset" -Force | Out-Null
+if (-not (Test-Path "$env:SystemDrive\PnPResett")) {
+    New-Item -ItemType Directory -Path "$env:SystemDrive\PnPReset" -Force | Out-Null
 }
 
 Write-Log "Starting PnP device check..."
