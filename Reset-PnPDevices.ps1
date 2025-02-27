@@ -10,18 +10,18 @@ function Write-Log {
 }
 
 # Ensure log directory exists
-if (-not (Test-Path "$env:SystemDrive\PnPResett")) {
+if (-not (Test-Path "$env:SystemDrive\PnPReset")) {
     New-Item -ItemType Directory -Path "$env:SystemDrive\PnPReset" -Force | Out-Null
 }
 
 Write-Log "Starting PnP device check..."
 
 try {
-    # Get all devices in an error state. 
-    # Checking for ConfigManagerErrorCode != 0 is redundant but I thought it might catch corner cases.
+    # Get all devices in an error state
     $problemDevices = Get-PnpDevice | Where-Object { 
         $_.Present -eq $true -and (
             $_.Status -eq "Error" -or 
+            $_.Status -eq "Unknown" -or 
             $_.ConfigManagerErrorCode -ne 0
         )
     }
